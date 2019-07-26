@@ -11,7 +11,11 @@
     (Make it toggle back and forth between hidden and show)
     */
     $(function() {
-      // Write code here
+      $('#accordion').on('click','#section-header',(e)=>{
+        console.log(e)
+        $('#accordion').find($('#section')).slideToggle()
+      })
+      // $('#section').hide();
     });
     </script>
 

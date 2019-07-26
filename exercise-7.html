@@ -8,32 +8,103 @@
     /*
     Make a Todo List
 
-    0. Make it so that after entering the task description, in the text field and clicking the "Add Task" button, a new task appears inside the element with the id todo-list.
-    1. the ability to remove tasks (add an x button)
-    2. the ability to check off tasks - strikes them out wo removing (add a checkbox)
-    3. the ability to delete a task
-    4. the ability to edit an existing task
+    x0. Make it so that after entering the task description, in the text field and clicking the "Add Task" button, a new task appears inside the element with the id todo-list.
+    x1. the ability to remove tasks (add an x button)
+    x2. the ability to check off tasks - strikes them out wo removing (add a checkbox)
+    x3. the ability to delete a task
+    x4. the ability to edit an existing task
 
     */
+/*---------------------------------------------------
+* jQuery starts here
+*---------------------------------------------------*/
+$(function () {
+      let $itemID = 0 
+      $('#wrapper').on('click', '#add-button',(e)=>{
+        console.log(e)
+        $itemID++
+        let $inputValue = $('#description').val();
+        let $newListItem = $(`<li><button id='task' data-taskID="${$itemID}" class='btn-style' >${$inputValue}</button><button id='edit' data-editID="${$itemID}" class='btn-style-1'>edit</edit><button data-deleteID="${$itemID}" id="delete" class='btn-style-1'>delete</button></li>`)
+        $('#todo-list').append($newListItem)
+      })
+/*---------------------------------------------------
+* Mark Task Complete 
+*---------------------------------------------------*/
+      $('#wrapper').on('click','#task',function (e){
+        console.log(e)
+        //button 
+      console.log($(e.target.attr($('[data-taskID="$itemID"]'))))
+      })
+
+/*---------------------------------------------------
+* Edit Task 
+*---------------------------------------------------*/
+$('#wrapper').on('click','#edit',function (e){
+        console.log(e)
+
+      })
+/*---------------------------------------------------
+* Delete a Task
+*---------------------------------------------------*/
+$('#wrapper').on('click','#delete',function (e){
+        console.log(e)
+
+      })
+
+
+
+});
     </script>
+    
     <style>
     #wrapper {
       max-width: 480px;
       margin: auto;
+      border: 1px black solid;
+      background-color: azure;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
     }
-
+    #wrapper>h1{
+      text-align: center;
+    }
+    #wrapper>button{
+      font-size: 1.5em;
+    }
+    #wrapper>input{
+      border-radius: 20px;
+      margin-bottom: 10px;
+      border: 1px black solid;
+    }
     #description, #search, #todo-list {
       font-size: 1.5em;
     }
+    .btn-style{
+      border: 1px solid;
+      font-size: .75em;
+      margin-right: 5px;
+      border-radius: 20px;
+      background-color:lavender
+    }
+    .btn-style-1{
+      border: 1px solid black;
+      font-size: .75em;
+      border-radius: 20px; 
+      margin-right: 2px;
+      margin-bottom: 10px;
+    }
+
+  
     </style>
   </head>
   <body>
     <div id="wrapper">
+      <h1 style="text-align: center;">To-Do List</h1>
       <input id="description" type="text" name="description">
       <button id="add-button">Add Task</button>
-      <ul id="todo-list">
-        <li>Feed the cat</li>
-      </ul>
+      <ol id="todo-list">
+      </ol>
     </div>
   </body>
 </html>
